@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    font-family: Roboto, sans-serif;
+    font-size: 1.4em;
+}
+
+footer {
+  padding: 0.6em;
+  border-top: 1px solid black;
+}
+
+header {
+  margin: 4%;
+  height: 20em;
+  overflow: hidden;
+}
+
+header h1 {
+  position: absolute;
+  margin: auto;
+  margin-top: -9em;
+  font-size: 400%;
+  padding: 10%;
+  line-height: 180%;
+}
+
+header img{
+  opacity: 0.5;
+  width: 100%;
+  height: auto;
+}
+
+section {
+  margin: 4%;
+  padding: 1em;
+  border: 1px dashed;
+}
+
+.wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 33%, 33%, 33%;
+}
+
+.a {
+  grid-column: 1;
+}
+
+.b {
+  grid-column: 2;
+}
+
+.c {
+  grid-column: 3;
+}
+
+.title {
+  grid-row: 1;
+}
+
+.image {
+  grid-row: 2;
+}
+
+.ingredients {
+  grid-row: 3;
+}
+
+.allergy {
+    font-weight: bold;
+}
+
+#menu {
+    background-color: black;
+    color: white;
+}
+
+button {
+  margin-left: 4em;
+  margin-bottom: 2em;
+  width: 16em;
+  height: 3em;
+}
+
+button:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+input:hover {
+    cursor: text;
+}
+
+input[type*="radio"] {
+    cursor: pointer;
+}
+
+li {
+    font-size: 0.6em;
+}
