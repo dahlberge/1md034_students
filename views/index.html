@@ -3,48 +3,37 @@
   <head><meta charset="utf-8"/>
     <title>Burger Hut</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script type="text/javascript" src="js/menu.js"></script>
+    <!--<script defer src="js/js_script.js"></script>-->
+    <script defer src="https://vuejs.org/js/vue.js"></script>
+    <script defer src="js/vue_script.js"></script>
   </head>
   <body>
     <header>
       <img src="https://www.brasserieappelmans.be/wp-content/uploads/2017/11/private_bar.jpg">
       <h1>Welcome to Burger Hut</h1>
     </header>
-    <main>
+    <main id="main">
       <section id="menu">
         <h2>Select burger</h2>
         <p>This is where you execute burger selection</p>
+
         <div class="wrapper">
-          <div class="title a">
-            Hamburger
+          <div v-for="item in menuItems" v-bind:class=item.classTitle>
+            <h1>{{ item.name }}</h1>
           </div>
-          <div class="title b">
-            Bacon Burger
+          <div v-for="item in menuItems" v-bind:class="item.classImg">
+            <img v-bind:src="item.imgURL" width="200">
           </div>
-          <div class="title c">
-            Kids Burger
+          <div v-for="item in menuItems" v-bind:class="item.classIngr">
+            <input type="checkbox" class="burgerButt">
+            <ul>
+              <li>{{ item.kCal }} kCal</li>
+              <li v-if="item.gluten">Contains <span>gluten</span></li>
+              <li v-if="item.lactose">Contains <span>lactose</span></li>
+            </ul>
           </div>
-          <div class="image a">
-            <img src="http://www.pngpix.com/wp-content/uploads/2016/03/Hamburger-PNG-Image.png" width="200">
-          </div>
-          <div class="image b">
-            <img src="http://freepngimages.com/wp-content/uploads/2016/11/bacon-burger.png" width="200">
-          </div>
-          <div class="image c">
-            <img src="http://pngimg.com/uploads/burger_sandwich/burger_sandwich_PNG4115.png" width="200">
-          </div>
-          <div class="ingredients a">
-            <li>100 % calories</li>
-            <li>Contains <span class="allergy">fat</span></li>
-            <li>May contain traces of <span class="allergy">vitamines</span></li>
-          </div>
-          <div class="ingredients b">
-            <li>87 % <span class="allergy">emulsifier</span></li>
-            <li>Contains <span class="allergy">pork</span></li>
-          </div>
-          <div class="ingredients c">
-            <li><span class="allergy">Fat</span> (2300 % RDI)</li>
-            <li>Contains <span class="allergy">fat</li>
-          </div>
+
         </div>
       </section>
       <section id="contact">
@@ -54,23 +43,23 @@
           <h2>Delivery information:</h2>
           <p>
             <label for="name">Full name</label><br>
-            <input type="text" id="name" name="name" required="required" placeholder="First- and lastname">
+            <input v-model="customerName" type="text" id="name" name="name" required="required" placeholder="First- and lastname">
           </p>
           <p>
             <label for="email">E-mail</label><br>
-            <input type="text" id="email" name="email" required="required" placeholder="E-mail address">
+            <input v-model="customerEmail" type="text" id="email" name="email" required="required" placeholder="E-mail address">
           </p>
           <p>
             <label for="street">Street</label><br>
-            <input type="text" id="street" name="street" required="required" placeholder="Street name">
+            <input v-model="customerStreet" type="text" id="street" name="street" required="required" placeholder="Street name">
           </p>
           <p>
             <label for="house">House</label><br>
-            <input type="number" id="house" name="house" required="required" placeholder="House number">
+            <input v-model="customerHouse" type="number" id="house" name="house" required="required" placeholder="House number">
           </p>
           <p>
             <label for="payment">Payment method</label><br>
-            <select id="payment" name="payment">
+            <select v-model="customerPayment" id="payment" name="payment">
               <option>Credit card</option>
               <option>Swish</option>
               <option>PayPal</option>
@@ -79,15 +68,29 @@
           </p>
           <p>
             Gender<br>
-            <input type="radio" id="female" name="gender" value="female" checked><label for="female">Female</label><br>
-            <input type="radio" id="male" name="gender" value="male"><label for="male">Male</label><br>
-            <input type="radio" id="undisclosed" name="gender" value="undisclosed"><label for="undisclosed">Undisclosed</label><br>
+            <input v-model="customerGender" type="radio" id="female" name="gender" value="female" checked><label for="female">Female</label><br>
+            <input v-model="customerGender" type="radio" id="male" name="gender" value="male"><label for="male">Male</label><br>
+            <input v-model="customerGender" type="radio" id="undisclosed" name="gender" value="undisclosed"><label for="undisclosed">Undisclosed</label><br>
           </p>
         </form>
+        <p>
+          <button v-on:click="buttonClick" id="btnSubmit" align="center" type="submit"><img src="https://image.flaticon.com/icons/png/512/178/178779.png" width="20">Place order</button>
+        </p>
       </section>
-      <p>
-        <button align="center" type="submit"><img src="https://image.flaticon.com/icons/png/512/178/178779.png" width="20">Place order</button>
-      </p>
+      <section v-if="buttonIsClicked" id="confirmation">
+        <h1>Name</h1>
+        <p>{{ customerName }}</p>
+        <h1>Email</h1>
+        <p>{{ customerEmail }}</p>
+        <h1>Address</h1>
+        <p>{{ customerStreet }} {{ customerHouse }}</p>
+        <h1>Payment method</h1>
+        <p>{{ customerPayment }}</p>
+        <h1>Gender</h1>
+        <p>{{ customerGender }}</p>
+        <h1>Burger selection</h1>
+        <p>{{ chosenBurgers }}</p>
+      </section>
     </main>
     <footer>
       &copy; 2019 Hypothetical Burgers Inc.

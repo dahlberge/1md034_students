@@ -14,15 +14,18 @@ header {
   margin: 4%;
   height: 20em;
   overflow: hidden;
+  position: relative;
 }
 
 header h1 {
+  margin: 0;
+  font-size: 600%;
   position: absolute;
-  margin: auto;
-  margin-top: -9em;
-  font-size: 400%;
-  padding: 10%;
-  line-height: 180%;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 header img{
@@ -42,33 +45,40 @@ section {
   display: grid;
   grid-template-columns: 33%, 33%, 33%;
 }
-
-.a {
+.col0 {
   grid-column: 1;
 }
-
-.b {
+.col1 {
   grid-column: 2;
 }
-
-.c {
+.col2 {
   grid-column: 3;
 }
-
-.title {
+.col3 {
+  grid-column: 4;
+}
+.col4 {
+  grid-column: 5;
+}
+.row0 {
   grid-row: 1;
 }
-
-.image {
+.row1 {
   grid-row: 2;
 }
-
-.ingredients {
+.row2 {
   grid-row: 3;
+}
+.row3 {
+  grid-row: 4;
 }
 
 .allergy {
     font-weight: bold;
+}
+
+.burgerButt:hover {
+  cursor: pointer;
 }
 
 #menu {
